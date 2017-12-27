@@ -9,6 +9,6 @@ while not input_ended:
     else:
         total += float(inp) 
         number_of_grades += 1
-cap = total / number_of_grades
+cap = total / number_of_grades if number_of_grades > 0 else 0
 cap = ceil(float(cap)*10)/10   
 print("your cap is", cap)
