@@ -1,14 +1,21 @@
 from math import ceil
-input_ended = False
-number_of_grades = 0
-total = 0
-while not input_ended:
-    inp = input("Enter a grade point, or 'stop' to end: ")
+
+def calc_cap(all_mods):
+    number_of_grades = len(all_mods)
+    total = 0
+    for mod in all_mods:
+        total += mod['gradepoint']
+    cap = total / number_of_grades if number_of_grades > 0 else 0
+    cap = ceil(float(cap)*10)/10
+    return cap
+
+all_mods = []
+while True:
+    inp = input("input mod '<name> <MC count> <grade point>' or 'stop' to end: ")
     if inp == 'stop':
-        input_ended = True
+        break
     else:
-        total += float(inp) 
-        number_of_grades += 1
-cap = total / number_of_grades if number_of_grades > 0 else 0
-cap = ceil(float(cap)*10)/10   
-print("your cap is", cap)
+        name, mc, grade = inp.split(' ')[0], int(inp.split(' ')[1]), float(inp.split(' ')[2])
+        all_mods.append({'name': name, 'mc': mc, 'gradepoint': grade})
+
+print("your cap is", calc_cap(all_mods))
