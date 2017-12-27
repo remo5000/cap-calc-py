@@ -12,11 +12,12 @@ def input_all_mods():
     return all_mods
 
 def calc_cap(all_mods):
-    number_of_grades = len(all_mods)
+    number_of_mcs = 0
     total = 0
     for mod in all_mods:
-        total += mod['gradepoint']
-    cap = total / number_of_grades if number_of_grades > 0 else 0
+        total += mod['gradepoint'] * mod['mc']
+        number_of_mcs += mod['mc']
+    cap = total / number_of_mcs
     cap = ceil(float(cap)*100)/100
     return cap
 
