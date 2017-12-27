@@ -9,13 +9,16 @@ def calc_cap(all_mods):
     cap = ceil(float(cap)*10)/10
     return cap
 
-all_mods = []
-while True:
-    inp = input("input mod '<name> <MC count> <grade point>' or 'stop' to end: ")
-    if inp == 'stop':
-        break
-    else:
-        name, mc, grade = inp.split(' ')[0], int(inp.split(' ')[1]), float(inp.split(' ')[2])
-        all_mods.append({'name': name, 'mc': mc, 'gradepoint': grade})
+def input_all_mods():
+    all_mods = []
+    while True:
+        inp = input("input mod '<name> <MC count> <grade point>' or 'stop' to end: ")
+        if inp == 'stop':
+            break
+        else:
+            name, mc, grade = inp.split(' ')[0], int(inp.split(' ')[1]), float(inp.split(' ')[2])
+            all_mods.append({'name': name, 'mc': mc, 'gradepoint': grade})
+    return all_mods
 
+all_mods = input_all_mods()
 print("your cap is", calc_cap(all_mods))
