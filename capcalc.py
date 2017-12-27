@@ -20,5 +20,20 @@ def input_all_mods():
             all_mods.append({'name': name, 'mc': mc, 'gradepoint': grade})
     return all_mods
 
+def su(all_mods):
+    for index, mod in enumerate(all_mods):
+        print("Index:", index, "    ", mod['name'], mod['mc'], mod['gradepoint'])
+    while True:
+        inp = input("input indices to s/u or 'stop' to end: ")
+        if inp == 'stop':
+            break
+        else:
+            index = int(inp)
+            del all_mods[index]
+    return all_mods
+
 all_mods = input_all_mods()
 print("your cap is", calc_cap(all_mods))
+if input("do you want to s/u? y/n: ") == 'y':
+    all_mods = su(all_mods)
+    print("your new cap is", calc_cap(all_mods))
