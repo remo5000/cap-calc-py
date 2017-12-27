@@ -22,7 +22,11 @@ def calc_cap(all_mods):
 
 def su(all_mods):
     for index, mod in enumerate(all_mods):
-        print("Index:", index, "    ", mod['name'], mod['mc'], mod['gradepoint'])
+        i = str(index)
+        name = mod['name']
+        mc = str(mod['mc'])
+        gp = str(mod['gradepoint'])
+        print("Index: " + i + "\t" + name + "\t" + mc + " MCs" + "\t" + "Grade: " + gp)
     while True:
         inp = input("input indices to s/u or 'stop' to end: ")
         if inp == 'stop':
