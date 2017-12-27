@@ -1,14 +1,5 @@
 from math import ceil
 
-def calc_cap(all_mods):
-    number_of_grades = len(all_mods)
-    total = 0
-    for mod in all_mods:
-        total += mod['gradepoint']
-    cap = total / number_of_grades if number_of_grades > 0 else 0
-    cap = ceil(float(cap)*10)/10
-    return cap
-
 def input_all_mods():
     all_mods = []
     while True:
@@ -19,6 +10,15 @@ def input_all_mods():
             name, mc, grade = inp.split(' ')[0], int(inp.split(' ')[1]), float(inp.split(' ')[2])
             all_mods.append({'name': name, 'mc': mc, 'gradepoint': grade})
     return all_mods
+
+def calc_cap(all_mods):
+    number_of_grades = len(all_mods)
+    total = 0
+    for mod in all_mods:
+        total += mod['gradepoint']
+    cap = total / number_of_grades if number_of_grades > 0 else 0
+    cap = ceil(float(cap)*10)/10
+    return cap
 
 def su(all_mods):
     for index, mod in enumerate(all_mods):
