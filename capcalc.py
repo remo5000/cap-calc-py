@@ -17,7 +17,7 @@ def calc_cap(all_mods):
     for mod in all_mods:
         total += mod['gradepoint']
     cap = total / number_of_grades if number_of_grades > 0 else 0
-    cap = ceil(float(cap)*10)/10
+    cap = ceil(float(cap)*100)/100
     return cap
 
 def su(all_mods):
