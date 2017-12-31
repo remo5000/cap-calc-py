@@ -30,9 +30,9 @@ def su(all_mods):
         ))
     inp = input(INDICES_PROMPT)
     while inp.lower() != 'stop':
-        del all_mods[int(index)]
+        all_mods[int(index)] = None
         inp = input(INDICES_PROMPT)
-    return all_mods
+    return list(filter(lambda x: x is not None, all_mods))
 
 all_mods = input_all_mods()
 print("your cap is", calc_cap(all_mods))
