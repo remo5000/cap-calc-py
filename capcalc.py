@@ -1,14 +1,16 @@
 from math import ceil
 
+INPUT_PROMPT = "input mod '<name> <MC count> <grade point>' or 'stop' to end: "
+INDICES_PROMPT = "input indices to s/u or 'stop' to end: " 
+SU_PROMPT = "do you want to s/u? y/n: "
+
 def input_all_mods():
     all_mods = []
-    while True:
-        inp = input("input mod '<name> <MC count> <grade point>' or 'stop' to end: ")
-        if inp == 'stop':
-            break
-        else:
-            name, mc, grade = inp.split(' ')[0], int(inp.split(' ')[1]), float(inp.split(' ')[2])
-            all_mods.append({'name': name, 'mc': mc, 'gradepoint': grade})
+    inp = input(INPUT_PROMPT)
+    while inp.lower() != 'stop':
+        name, mc, grade = inp.split(' ')
+        all_mods.append({'name': name, 'mc': int(mc), 'gradepoint': float(grade)})
+        inp = input(INPUT_PROMPT)
     return all_mods
 
 def calc_cap(all_mods):
@@ -23,22 +25,17 @@ def calc_cap(all_mods):
 
 def su(all_mods):
     for index, mod in enumerate(all_mods):
-        i = str(index)
-        name = mod['name']
-        mc = str(mod['mc'])
-        gp = str(mod['gradepoint'])
-        print("Index: " + i + "\t" + name + "\t" + mc + " MCs" + "\t" + "Grade: " + gp)
-    while True:
-        inp = input("input indices to s/u or 'stop' to end: ")
-        if inp == 'stop':
-            break
-        else:
-            index = int(inp)
-            del all_mods[index]
+        print("Index: {}\t{}\t{}MCs\tGrade: {}".format(
+            index, mod['name'], mod['mc'], mod['gradepoint']
+        ))
+    inp = input(INDICES_PROMPT)
+    while inp.lower() != 'stop':
+        del all_mods[int(index)]
+        inp = input(INDICES_PROMPT)
     return all_mods
 
 all_mods = input_all_mods()
 print("your cap is", calc_cap(all_mods))
-if input("do you want to s/u? y/n: ") == 'y':
+if input(SU_PROMPT) == 'y':
     all_mods = su(all_mods)
     print("your new cap is", calc_cap(all_mods))
