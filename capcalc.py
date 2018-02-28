@@ -2,7 +2,7 @@ import csv
 from math import ceil
 
 IMPORT_PROMPT = "do you want to import grades from current_grades file? y/n: "
-INPUT_PROMPT = "input mod '<name> <MC count> <grade point>' or 'stop' to end: "
+INPUT_PROMPT = "input mod '<name>, <MC count>, <grade point>' or 'stop' to end: "
 INDICES_PROMPT = "input indices to s/u or 'stop' to end: " 
 SU_PROMPT = "do you want to s/u? y/n: "
 
@@ -22,7 +22,7 @@ def import_mods():
 def input_all_mods(all_mods):
     inp = input(INPUT_PROMPT)
     while inp.lower() != 'stop':
-        name, mc, grade = inp.split(' ')
+        name, mc, grade = [s.strip() for s in inp.split(',')]
         all_mods.append({'name': name, 'mc': int(mc), 'gradepoint': float(grade)})
         inp = input(INPUT_PROMPT)
     return all_mods
