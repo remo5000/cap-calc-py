@@ -44,7 +44,7 @@ def su(all_mods):
         ))
     inp = input(INDICES_PROMPT)
     while inp.lower() != 'stop':
-        all_mods[int(index)] = None
+        all_mods[int(inp)] = None
         inp = input(INDICES_PROMPT)
     return list(filter(lambda x: x is not None, all_mods))
 
