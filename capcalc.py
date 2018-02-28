@@ -1,11 +1,23 @@
+import csv
 from math import ceil
 
+IMPORT_PROMPT = "do you want to import grades from current_grades file? y/n: "
 INPUT_PROMPT = "input mod '<name> <MC count> <grade point>' or 'stop' to end: "
 INDICES_PROMPT = "input indices to s/u or 'stop' to end: " 
 SU_PROMPT = "do you want to s/u? y/n: "
 
-def input_all_mods():
+def import_mods():
     all_mods = []
+    if input(IMPORT_PROMPT) == 'y':
+        with open('current_grades.txt', newline='') as inputfile:
+            for row in csv.reader(inputfile):
+                print(row)
+                all_mods.append({'name': row[0].strip(), \
+                        'mc': int(row[1].strip()), \
+                        'gradepoint': float(row[2].strip())})
+    return all_mods
+
+def input_all_mods(all_mods):
     inp = input(INPUT_PROMPT)
     while inp.lower() != 'stop':
         name, mc, grade = inp.split(' ')
@@ -34,7 +46,8 @@ def su(all_mods):
         inp = input(INDICES_PROMPT)
     return list(filter(lambda x: x is not None, all_mods))
 
-all_mods = input_all_mods()
+all_mods = import_mods()
+all_mods = input_all_mods(all_mods)
 print("your cap is", calc_cap(all_mods))
 if input(SU_PROMPT) == 'y':
     all_mods = su(all_mods)

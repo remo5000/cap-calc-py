@@ -1,0 +1,3 @@
+CS1101S Prog. Methodology, 5, 4.5
+MA1101R LinAlg, 4, 4.0
+MA1521 FakeMaths, 4, 3.0
