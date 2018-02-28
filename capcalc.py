@@ -11,7 +11,9 @@ def import_mods():
     if input(IMPORT_PROMPT) == 'y':
         with open('current_grades.txt', newline='') as inputfile:
             for row in csv.reader(inputfile):
-                print(row)
+                if len(row) == 0:
+                    continue
+                print(" ".join(row))
                 all_mods.append({'name': row[0].strip(), \
                         'mc': int(row[1].strip()), \
                         'gradepoint': float(row[2].strip())})
